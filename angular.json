@@ -1,0 +1,50 @@
+{
+  "$schema": "./node_modules/@angular-devkit/core/src/workspace/workspace-schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "nicearma-lib": {
+      "root": "projects/nicearma-lib",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "project": "projects/nicearma-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/nicearma-lib/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/nicearma-lib/src/test.ts",
+            "tsConfig": "projects/nicearma-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/nicearma-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/nicearma-lib/tsconfig.lint.json",
+              "projects/nicearma-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "css"
+    }
+  }
+}
