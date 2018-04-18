@@ -1,0 +1,18 @@
+{
+  "version": 3,
+  "file": "nicearma-lib.js",
+  "sources": [
+    "ng://nicearma-lib/out/lib/nicearma-lib.module.ts",
+    "ng://nicearma-lib/out/lib/hello/hello.component.ts",
+    "ng://nicearma-lib/out/lib/nicearma-lib.component.ts",
+    "ng://nicearma-lib/out/lib/nicearma-lib.service.ts"
+  ],
+  "sourcesContent": [
+    "import { NgModule } from '@angular/core';\nimport { NicearmaLibComponent } from './nicearma-lib.component';\n\nconst Components = [\n  NicearmaLibComponent\n];\n\n@NgModule({\n  imports: [\n  ],\n  declarations: [...Components\n  ],\n  exports: [...Components]\n})\nexport class NicearmaLibModule { }\n",
+    "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'lib-hello',\r\n  template: `\r\n<h1>Hello Nicolas</h1>\r\n`,\r\n  styles: []\r\n})\r\nexport class HelloComponent implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit() {\r\n  }\r\n\r\n}\r\n",
+    "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'lib-nicearma-lib',\n  template: `<p>\r\n  nicearma-lib works!\r\n</p>\r\n`,\n  styles: []\n})\nexport class NicearmaLibComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit() {\n  }\n\n}\n",
+    "import { Injectable } from '@angular/core';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class NicearmaLibService {\n\n  constructor() { }\n}\n"
+  ],
+  "names": [],
+  "mappings": ";;;;;;AGAA,AAKA,MAAA,kBAAA,CAAA;IAEE,WAAF,GAAA,GAAmB;;;IALnB,EAAA,IAAA,EAAC,UAAU,EAAX,IAAA,EAAA,CAAY;gBACV,UAAU,EAAE,MAAM;aACnB,EAAD,EAAA;;;;;;;;;;ADJA,AAUA,MAAA,oBAAA,CAAA;IAEE,WAAF,GAAA,GAAmB;;;;IAEjB,QAAQ,GAAV;KACG;;;IAbH,EAAA,IAAA,EAAC,SAAS,EAAV,IAAA,EAAA,CAAW;gBACT,QAAQ,EAAE,kBAAkB;gBAC5B,QAAQ,EAAE,CAAZ;;;AAGA,CAAC;gBACC,MAAM,EAAE,EAAE;aACX,EAAD,EAAA;;;;;;;;;ADTA,AASA,MAAA,cAAA,CAAA;IAEE,WAAF,GAAA,GAAmB;;;;IAEjB,QAAQ,GAAV;KACG;;;IAZH,EAAA,IAAA,EAAC,SAAS,EAAV,IAAA,EAAA,CAAW;gBACT,QAAQ,EAAE,WAAW;gBACrB,QAAQ,EAAE,CAAZ;;AAEA,CAAC;gBACC,MAAM,EAAE,EAAE;aACX,EAAD,EAAA;;;;;;;;;ADRA,AAGA,MAAM,UAAU,GAAG;IACjB,oBAAoB;CACrB,CAAC;AASF,AAAA,MAAA,iBAAA,CAAA;;;IAPA,EAAA,IAAA,EAAC,QAAQ,EAAT,IAAA,EAAA,CAAU;gBACR,OAAO,EAAE,EACR;gBACD,YAAY,EAAE,CAAC,GAAG,UAAU;iBAC3B;gBACD,OAAO,EAAE,CAAC,GAAG,UAAU,CAAC;aACzB,EAAD,EAAA;;;;;;;;;;;;;;;;;;;;;"
+}
