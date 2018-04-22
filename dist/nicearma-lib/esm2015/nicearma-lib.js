@@ -85,7 +85,8 @@ HelloComponent.propDecorators = {
  * @suppress {checkTypes} checked by tsc
  */
 const Components = [
-    NicearmaLibComponent
+    NicearmaLibComponent,
+    HelloComponent
 ];
 class NicearmaLibModule {
 }

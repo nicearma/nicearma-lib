@@ -103,7 +103,8 @@ HelloComponent.propDecorators = {
     "hello": [{ type: core.Input },],
 };
 var Components = [
-    NicearmaLibComponent
+    NicearmaLibComponent,
+    HelloComponent
 ];
 var NicearmaLibModule = /** @class */ (function () {
     function NicearmaLibModule() {
