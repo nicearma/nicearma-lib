@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'lib-hello',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HelloComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  hello = new EventEmitter();
+
+  constructor(public http: HttpClient) {
+  }
 
   ngOnInit() {
+    this.http.get('/sayHello').subscribe((v) => {
+      this.hello.emit(v);
+    })
   }
 
 }

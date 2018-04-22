@@ -1,5 +1,6 @@
 import { __spread } from 'tslib';
-import { Injectable, Component, NgModule, defineInjectable } from '@angular/core';
+import { Injectable, Component, EventEmitter, Input, NgModule, defineInjectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 var NicearmaLibService = /** @class */ (function () {
     function NicearmaLibService() {
@@ -29,9 +30,15 @@ NicearmaLibComponent.decorators = [
 ];
 NicearmaLibComponent.ctorParameters = function () { return []; };
 var HelloComponent = /** @class */ (function () {
-    function HelloComponent() {
+    function HelloComponent(http) {
+        this.http = http;
+        this.hello = new EventEmitter();
     }
     HelloComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.http.get('/sayHello').subscribe(function (v) {
+            _this.hello.emit(v);
+        });
     };
     return HelloComponent;
 }());
@@ -42,7 +49,12 @@ HelloComponent.decorators = [
                 styles: []
             },] },
 ];
-HelloComponent.ctorParameters = function () { return []; };
+HelloComponent.ctorParameters = function () { return [
+    { type: HttpClient, },
+]; };
+HelloComponent.propDecorators = {
+    "hello": [{ type: Input },],
+};
 var Components = [
     NicearmaLibComponent
 ];

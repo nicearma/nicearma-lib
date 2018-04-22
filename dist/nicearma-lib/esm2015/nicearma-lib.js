@@ -1,4 +1,5 @@
-import { Injectable, Component, NgModule, defineInjectable } from '@angular/core';
+import { Injectable, Component, EventEmitter, Input, NgModule, defineInjectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 /**
  * @fileoverview added by tsickle
@@ -46,11 +47,20 @@ NicearmaLibComponent.ctorParameters = () => [];
  * @suppress {checkTypes} checked by tsc
  */
 class HelloComponent {
-    constructor() { }
+    /**
+     * @param {?} http
+     */
+    constructor(http) {
+        this.http = http;
+        this.hello = new EventEmitter();
+    }
     /**
      * @return {?}
      */
     ngOnInit() {
+        this.http.get('/sayHello').subscribe((v) => {
+            this.hello.emit(v);
+        });
     }
 }
 HelloComponent.decorators = [
@@ -63,7 +73,12 @@ HelloComponent.decorators = [
             },] },
 ];
 /** @nocollapse */
-HelloComponent.ctorParameters = () => [];
+HelloComponent.ctorParameters = () => [
+    { type: HttpClient, },
+];
+HelloComponent.propDecorators = {
+    "hello": [{ type: Input },],
+};
 
 /**
  * @fileoverview added by tsickle

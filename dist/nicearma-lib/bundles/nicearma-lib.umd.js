@@ -1,8 +1,8 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core')) :
-	typeof define === 'function' && define.amd ? define('nicearma-lib', ['exports', '@angular/core'], factory) :
-	(factory((global['nicearma-lib'] = {}),global.ng.core));
-}(this, (function (exports,core) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common/http')) :
+	typeof define === 'function' && define.amd ? define('nicearma-lib', ['exports', '@angular/core', '@angular/common/http'], factory) :
+	(factory((global['nicearma-lib'] = {}),global.ng.core,global.ng.common.http));
+}(this, (function (exports,core,http) { 'use strict';
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -77,9 +77,15 @@ NicearmaLibComponent.decorators = [
 ];
 NicearmaLibComponent.ctorParameters = function () { return []; };
 var HelloComponent = /** @class */ (function () {
-    function HelloComponent() {
+    function HelloComponent(http$$1) {
+        this.http = http$$1;
+        this.hello = new core.EventEmitter();
     }
     HelloComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.http.get('/sayHello').subscribe(function (v) {
+            _this.hello.emit(v);
+        });
     };
     return HelloComponent;
 }());
@@ -90,7 +96,12 @@ HelloComponent.decorators = [
                 styles: []
             },] },
 ];
-HelloComponent.ctorParameters = function () { return []; };
+HelloComponent.ctorParameters = function () { return [
+    { type: http.HttpClient, },
+]; };
+HelloComponent.propDecorators = {
+    "hello": [{ type: core.Input },],
+};
 var Components = [
     NicearmaLibComponent
 ];
