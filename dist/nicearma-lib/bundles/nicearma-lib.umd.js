@@ -129,16 +129,28 @@ HelloComponent.ctorParameters = function () { return [
 HelloComponent.propDecorators = {
     "hello": [{ type: core.Input },],
 };
-var externalServiceFactory = {
-    provide: ExternalService,
-    useFactory: function (httpClient) {
-        return new ExternalService(httpClient);
-    },
-    deps: [http.HttpClient]
-};
+var PageComponent = /** @class */ (function () {
+    function PageComponent() {
+    }
+    PageComponent.prototype.ngOnInit = function () {
+    };
+    return PageComponent;
+}());
+PageComponent.decorators = [
+    { type: core.Component, args: [{
+                selector: 'lib-page',
+                template: "<h1>Page from lib!!!! </h1>\n",
+                styles: []
+            },] },
+];
+PageComponent.ctorParameters = function () { return []; };
+var routes = [
+    { path: 'lib', component: PageComponent }
+];
 var Components = [
     NicearmaLibComponent,
-    HelloComponent
+    HelloComponent,
+    PageComponent
 ];
 var NicearmaLibModule = /** @class */ (function () {
     function NicearmaLibModule() {
@@ -157,9 +169,10 @@ exports.NicearmaLibService = NicearmaLibService;
 exports.NicearmaLibComponent = NicearmaLibComponent;
 exports.HelloComponent = HelloComponent;
 exports.ExternalService = ExternalService;
-exports.externalServiceFactory = externalServiceFactory;
+exports.routes = routes;
 exports.NicearmaLibModule = NicearmaLibModule;
 exports.ɵa = HelloService;
+exports.ɵb = PageComponent;
 
 Object.defineProperty(exports, '__esModule', { value: true });
 

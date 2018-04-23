@@ -82,16 +82,28 @@ HelloComponent.ctorParameters = function () { return [
 HelloComponent.propDecorators = {
     "hello": [{ type: Input },],
 };
-var externalServiceFactory = {
-    provide: ExternalService,
-    useFactory: function (httpClient) {
-        return new ExternalService(httpClient);
-    },
-    deps: [HttpClient]
-};
+var PageComponent = /** @class */ (function () {
+    function PageComponent() {
+    }
+    PageComponent.prototype.ngOnInit = function () {
+    };
+    return PageComponent;
+}());
+PageComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'lib-page',
+                template: "<h1>Page from lib!!!! </h1>\n",
+                styles: []
+            },] },
+];
+PageComponent.ctorParameters = function () { return []; };
+var routes = [
+    { path: 'lib', component: PageComponent }
+];
 var Components = [
     NicearmaLibComponent,
-    HelloComponent
+    HelloComponent,
+    PageComponent
 ];
 var NicearmaLibModule = /** @class */ (function () {
     function NicearmaLibModule() {
@@ -106,5 +118,5 @@ NicearmaLibModule.decorators = [
             },] },
 ];
 
-export { NicearmaLibService, NicearmaLibComponent, HelloComponent, ExternalService, externalServiceFactory, NicearmaLibModule, HelloService as ɵa };
+export { NicearmaLibService, NicearmaLibComponent, HelloComponent, ExternalService, routes, NicearmaLibModule, HelloService as ɵa, PageComponent as ɵb };
 //# sourceMappingURL=nicearma-lib.js.map

@@ -129,13 +129,32 @@ HelloComponent.propDecorators = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
-const externalServiceFactory = {
-    provide: ExternalService,
-    useFactory: (httpClient) => {
-        return new ExternalService(httpClient);
-    },
-    deps: [HttpClient]
-};
+class PageComponent {
+    constructor() { }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+    }
+}
+PageComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'lib-page',
+                template: `<h1>Page from lib!!!! </h1>
+`,
+                styles: []
+            },] },
+];
+/** @nocollapse */
+PageComponent.ctorParameters = () => [];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+const routes = [
+    { path: 'lib', component: PageComponent }
+];
 
 /**
  * @fileoverview added by tsickle
@@ -143,7 +162,8 @@ const externalServiceFactory = {
  */
 const Components = [
     NicearmaLibComponent,
-    HelloComponent
+    HelloComponent,
+    PageComponent
 ];
 class NicearmaLibModule {
 }
@@ -172,5 +192,5 @@ NicearmaLibModule.decorators = [
  * Generated bundle index. Do not edit.
  */
 
-export { NicearmaLibService, NicearmaLibComponent, HelloComponent, ExternalService, externalServiceFactory, NicearmaLibModule, HelloService as ɵa };
+export { NicearmaLibService, NicearmaLibComponent, HelloComponent, ExternalService, routes, NicearmaLibModule, HelloService as ɵa, PageComponent as ɵb };
 //# sourceMappingURL=nicearma-lib.js.map
