@@ -172,7 +172,7 @@ NicearmaLibModule.decorators = [
                 declarations: [...Components
                 ],
                 exports: [...Components],
-                providers: [HelloService]
+                providers: [HelloService, ExternalService]
             },] },
 ];
 

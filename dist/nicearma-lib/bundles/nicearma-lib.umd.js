@@ -161,7 +161,7 @@ NicearmaLibModule.decorators = [
     { type: core.NgModule, args: [{
                 declarations: __spread(Components),
                 exports: __spread(Components),
-                providers: [HelloService]
+                providers: [HelloService, ExternalService]
             },] },
 ];
 
