@@ -76,16 +76,42 @@ NicearmaLibComponent.decorators = [
             },] },
 ];
 NicearmaLibComponent.ctorParameters = function () { return []; };
+var HelloService = /** @class */ (function () {
+    function HelloService() {
+    }
+    HelloService.prototype.sayHello = function () {
+        console.log('hello');
+    };
+    return HelloService;
+}());
+HelloService.decorators = [
+    { type: core.Injectable },
+];
+var ExternalService = /** @class */ (function () {
+    function ExternalService(httpClient) {
+        this.httpClient = httpClient;
+    }
+    ExternalService.prototype.sayHola = function () {
+        this.httpClient.get('sayHola').subscribe();
+        console.log('hola');
+    };
+    return ExternalService;
+}());
+ExternalService.decorators = [
+    { type: core.Injectable },
+];
+ExternalService.ctorParameters = function () { return [
+    { type: http.HttpClient, },
+]; };
 var HelloComponent = /** @class */ (function () {
-    function HelloComponent(http$$1) {
-        this.http = http$$1;
+    function HelloComponent(helloService, externalService) {
+        this.helloService = helloService;
+        this.externalService = externalService;
         this.hello = new core.EventEmitter();
     }
     HelloComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.http.get('/sayHello').subscribe(function (v) {
-            _this.hello.emit(v);
-        });
+        this.helloService.sayHello();
+        this.externalService.sayHola();
     };
     return HelloComponent;
 }());
@@ -97,10 +123,18 @@ HelloComponent.decorators = [
             },] },
 ];
 HelloComponent.ctorParameters = function () { return [
-    { type: http.HttpClient, },
+    { type: HelloService, },
+    { type: ExternalService, },
 ]; };
 HelloComponent.propDecorators = {
     "hello": [{ type: core.Input },],
+};
+var externalServiceFactory = {
+    provide: ExternalService,
+    useFactory: function (httpClient) {
+        return new ExternalService(httpClient);
+    },
+    deps: [http.HttpClient]
 };
 var Components = [
     NicearmaLibComponent,
@@ -113,16 +147,19 @@ var NicearmaLibModule = /** @class */ (function () {
 }());
 NicearmaLibModule.decorators = [
     { type: core.NgModule, args: [{
-                imports: [],
                 declarations: __spread(Components),
-                exports: __spread(Components)
+                exports: __spread(Components),
+                providers: [HelloService]
             },] },
 ];
 
 exports.NicearmaLibService = NicearmaLibService;
 exports.NicearmaLibComponent = NicearmaLibComponent;
 exports.HelloComponent = HelloComponent;
+exports.ExternalService = ExternalService;
+exports.externalServiceFactory = externalServiceFactory;
 exports.NicearmaLibModule = NicearmaLibModule;
+exports.ɵa = HelloService;
 
 Object.defineProperty(exports, '__esModule', { value: true });
 

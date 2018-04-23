@@ -1,8 +1,10 @@
 import { EventEmitter, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HelloService } from './hello.service';
+import { ExternalService } from './external.service';
 export declare class HelloComponent implements OnInit {
-    http: HttpClient;
+    helloService: HelloService;
+    externalService: ExternalService;
     hello: EventEmitter<{}>;
-    constructor(http: HttpClient);
+    constructor(helloService: HelloService, externalService: ExternalService);
     ngOnInit(): void;
 }

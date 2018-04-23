@@ -1,6 +1,10 @@
-import { NgModule } from '@angular/core';
-import { NicearmaLibComponent } from './nicearma-lib.component';
+import {ModuleWithProviders, NgModule} from '@angular/core';
+import {NicearmaLibComponent} from './nicearma-lib.component';
 import {HelloComponent} from './hello/hello.component';
+import {HelloService} from './hello/hello.service';
+import {ExternalService} from './hello/external.service';
+import {HttpClient} from '@angular/common/http';
+
 
 const Components = [
   NicearmaLibComponent,
@@ -8,10 +12,17 @@ const Components = [
 ];
 
 @NgModule({
-  imports: [
-  ],
   declarations: [...Components
   ],
-  exports: [...Components]
+  exports: [...Components],
+  providers: [HelloService]
 })
-export class NicearmaLibModule { }
+export class NicearmaLibModule {
+
+  // public static forRoot(): ModuleWithProviders {
+  //   return {
+  //     ngModule: NicearmaLibModule
+  //   };
+  //
+  // }
+}

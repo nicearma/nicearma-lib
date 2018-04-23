@@ -46,21 +46,65 @@ NicearmaLibComponent.ctorParameters = () => [];
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+class HelloService {
+    /**
+     * @return {?}
+     */
+    sayHello() {
+        console.log('hello');
+    }
+}
+HelloService.decorators = [
+    { type: Injectable },
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+class ExternalService {
+    /**
+     * @param {?} httpClient
+     */
+    constructor(httpClient) {
+        this.httpClient = httpClient;
+    }
+    /**
+     * @return {?}
+     */
+    sayHola() {
+        this.httpClient.get('sayHola').subscribe();
+        console.log('hola');
+    }
+}
+ExternalService.decorators = [
+    { type: Injectable },
+];
+/** @nocollapse */
+ExternalService.ctorParameters = () => [
+    { type: HttpClient, },
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
 class HelloComponent {
     /**
-     * @param {?} http
+     * @param {?} helloService
+     * @param {?} externalService
      */
-    constructor(http) {
-        this.http = http;
+    constructor(helloService, externalService) {
+        this.helloService = helloService;
+        this.externalService = externalService;
         this.hello = new EventEmitter();
     }
     /**
      * @return {?}
      */
     ngOnInit() {
-        this.http.get('/sayHello').subscribe((v) => {
-            this.hello.emit(v);
-        });
+        this.helloService.sayHello();
+        this.externalService.sayHola();
     }
 }
 HelloComponent.decorators = [
@@ -74,10 +118,23 @@ HelloComponent.decorators = [
 ];
 /** @nocollapse */
 HelloComponent.ctorParameters = () => [
-    { type: HttpClient, },
+    { type: HelloService, },
+    { type: ExternalService, },
 ];
 HelloComponent.propDecorators = {
     "hello": [{ type: Input },],
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+const externalServiceFactory = {
+    provide: ExternalService,
+    useFactory: (httpClient) => {
+        return new ExternalService(httpClient);
+    },
+    deps: [HttpClient]
 };
 
 /**
@@ -92,10 +149,10 @@ class NicearmaLibModule {
 }
 NicearmaLibModule.decorators = [
     { type: NgModule, args: [{
-                imports: [],
                 declarations: [...Components
                 ],
-                exports: [...Components]
+                exports: [...Components],
+                providers: [HelloService]
             },] },
 ];
 
@@ -115,5 +172,5 @@ NicearmaLibModule.decorators = [
  * Generated bundle index. Do not edit.
  */
 
-export { NicearmaLibService, NicearmaLibComponent, HelloComponent, NicearmaLibModule };
+export { NicearmaLibService, NicearmaLibComponent, HelloComponent, ExternalService, externalServiceFactory, NicearmaLibModule, HelloService as ɵa };
 //# sourceMappingURL=nicearma-lib.js.map
